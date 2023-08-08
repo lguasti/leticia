@@ -1,0 +1,39 @@
+{
+  "f99fbb92-9839-4c73-a5fc-2cbce9d122a7": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://suzano.sharepoint.com/sites/TorreDeControle": {
+        "dataSources": {
+          "DesvioColheita": {
+            "tableName": "349a3138-d9a3-4cf3-87dc-ecfe7c406f00"
+          }
+        }
+      },
+      "https://suzano.sharepoint.com/sites/TorreDeControleUNFBA": {
+        "dataSources": {
+          "ArvoreDecisaoUNFBA": {
+            "tableName": "89ff1d80-62e9-4b64-9384-7a6e64e4f249"
+          },
+          "DesviosCarregamento": {
+            "tableName": "49b3e59f-6e76-495f-bc3d-5c756fe81936"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "DesvioColheita",
+      "ArvoreDecisaoUNFBA",
+      "DesviosCarregamento"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "f99fbb92-9839-4c73-a5fc-2cbce9d122a7"
+  }
+}

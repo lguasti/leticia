@@ -1,0 +1,78 @@
+TelaMenu As screen:
+    Fill: =RGBA(19, 27, 51, 1)
+    OnVisible: =    Refresh(DesvioColheita)
+
+    Label1 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Size: =16
+        Text: ="OLÁ " & User().FullName & ", SEJA BEM VINDO(A) AO APLICATIVO DA ÁRVORE DE DECISÃO DA TORRE DE CONTROLE"
+        Width: =1366
+        Y: =320
+        ZIndex: =1
+
+    Rectangle1 As rectangle:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =6
+        Width: =1366
+        Y: =222
+        ZIndex: =3
+
+    Circle1 As circle:
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderThickness: =6
+        Fill: =RGBA(19, 27, 51, 1)
+        Height: =150
+        Width: =150
+        X: =614
+        Y: =150
+        ZIndex: =5
+
+    imgUser As image:
+        Height: =130
+        Image: =User().Image
+        RadiusBottomLeft: =65
+        RadiusBottomRight: =65
+        RadiusTopLeft: =65
+        RadiusTopRight: =65
+        Width: =130
+        X: =625
+        Y: =160
+        ZIndex: =6
+
+    btnConsultar As image:
+        Height: =80
+        Image: ='consultar arvore'
+        OnSelect: =Navigate(TelaConsulta,ScreenTransition.None);Refresh(ArvoreDecisaoUNFBA)
+        Width: =334
+        X: =135
+        Y: =564
+        ZIndex: =7
+
+    btnAbrir As image:
+        Height: =80
+        Image: ='abrir árvore'
+        OnSelect: =NewForm(frmArvore);Navigate(TelaApontamento,ScreenTransition.None)
+        Width: =370
+        X: =135
+        Y: =444
+        ZIndex: =8
+
+    iconExit As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =104
+        Icon: =Icon.Cancel
+        OnSelect: =Exit()
+        Width: =104
+        X: =1245
+        Y: =21
+        ZIndex: =9
+
+    Image2 As image:
+        Height: =147
+        Image: =LOGO_TORRE_BRANCO
+        Width: =329
+        X: =32
+        Y: =13
+        ZIndex: =10
+

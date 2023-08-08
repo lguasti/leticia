@@ -1,0 +1,414 @@
+TelaConsulta As screen:
+    Fill: =RGBA(19, 27, 51, 1)
+    OnVisible: |-
+        =Concurrent(
+            ClearCollect(
+                 Arvore1,
+                 Sort(ArvoreDecisaoUNFBA, ID, SortOrder.Ascending)
+             ),
+             ClearCollect(
+                 Arvore2,
+                 Sort(ArvoreDecisaoUNFBA, ID, SortOrder.Descending)
+             )
+        );
+         ClearCollect(
+             ArvoreOK,
+             Arvore1,
+             Filter(Arvore2, Not(ID in Arvore1.ID))
+         );
+        Clear(Arvore1);
+        Clear(Arvore2)
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+        Height: =551
+        Items: |
+            =Sort(Filter(ArvoreOK,Dropdown10.Selected.Value = AREA && Dropdown11.Selected.Value = STATUS,TextInput1.Text in ID || TextInput1.Text in AREA || TextInput1.Text in EQUIPAMENTO || TextInput1.Text in NOMEOPERADOR ),ID,SortOrder.Descending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =Min(168, Self.Height - 60)
+        Width: =1366
+        Y: =204
+        ZIndex: =1
+
+        Title2 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Normal
+            OnSelect: =Select(Parent)
+            Size: =18
+            Text: =ThisItem.ID
+            VerticalAlign: =VerticalAlign.Top
+            Width: =140
+            X: =140
+            Y: =2
+            ZIndex: =3
+
+        Subtitle2 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.Criado
+            VerticalAlign: =VerticalAlign.Top
+            Width: =237
+            X: =140
+            Y: =42
+            ZIndex: =4
+
+        Body1 As label:
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            PaddingLeft: =0
+            PaddingRight: =0
+            Text: =ThisItem.NOMEOPERADOR
+            Width: =392
+            Wrap: =false
+            X: =145
+            Y: =82
+            ZIndex: =5
+
+        NextArrow2 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =60
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent);Navigate(TelaDetalhe,ScreenTransition.None)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="Exibir detalhes do item"
+            Width: =60
+            X: =1300
+            Y: =76
+            ZIndex: =6
+
+        Separator2 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 3
+            ZIndex: =7
+
+        Label4 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.EQUIPAMENTO
+            Width: =397
+            X: =140
+            Y: =122
+            ZIndex: =8
+
+        Label5 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.STATUS
+            Width: =180
+            X: =650
+            Y: =2
+            ZIndex: =9
+
+        Label6 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="ID: "
+            X: =40
+            Y: =2
+            ZIndex: =10
+
+        Label7 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="DATA: "
+            X: =40
+            Y: =42
+            ZIndex: =11
+
+        Label8 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="STATUS: "
+            Width: =100
+            X: =550
+            Y: =2
+            ZIndex: =12
+
+        Label9 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="NOME: "
+            X: =40
+            Y: =82
+            ZIndex: =13
+
+        Label10 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="EQUIP.:"
+            X: =40
+            Y: =123
+            ZIndex: =14
+
+        Label12 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="DESVIO: "
+            Width: =100
+            X: =550
+            Y: =122
+            ZIndex: =15
+
+        Label13 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.DESVIO
+            Width: =700
+            X: =650
+            Y: =122
+            ZIndex: =16
+
+        Label14 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="ÚLTIMA ATUALIZAÇÃO: "
+            Width: =324
+            X: =550
+            Y: =42
+            ZIndex: =17
+
+        Label15 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.Modificado
+            Width: =250
+            X: =807
+            Y: =42
+            ZIndex: =18
+
+        Label16 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: |-
+                ="ATUALIZADO POR: "
+            Width: =302
+            X: =550
+            Y: =82
+            ZIndex: =19
+
+        Label17 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.'Modificado por'.DisplayName
+            Width: =500
+            X: =760
+            Y: =82
+            ZIndex: =20
+
+        Label21 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =If(DateDiff(ThisItem.Criado,Now()) >=1, RGBA(255, 0, 0, 1),RGBA(19, 27, 51, 1))
+            FontWeight: =FontWeight.Bold
+            Height: =35
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="ABERTO: " & DateDiff(ThisItem.Criado,Now()) & " dias"
+            Visible: =If(DateDiff(ThisItem.Criado,Now()) >=1,true,false)
+            Width: =171
+            X: =1195
+            Y: =7
+            ZIndex: =21
+
+        Label22 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: ="-    " & ThisItem.NIVEL
+            Width: =200
+            X: =830
+            Y: =2
+            ZIndex: =22
+
+        Label25 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =16
+            Text: =ThisItem.MODULO
+            X: =266
+            Y: =129
+            ZIndex: =24
+
+        Group1 As group:
+            Height: =5
+            Width: =5
+            X: =60
+            Y: =60
+            ZIndex: =24
+
+            Label19 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =35
+                OnSelect: =Select(Parent)
+                Size: =15
+                Text: |-
+                    =Int( DateDiff(TimeValue(ThisItem.Modificado,"pt-BR"),TimeValue(Now(),"pt-BR"),TimeUnit.Minutes)/60) & ":" & (DateDiff(TimeValue(ThisItem.Modificado,"pt-BR"),TimeValue(Now(),"pt-BR"),TimeUnit.Minutes)/60 - Int( DateDiff(TimeValue(ThisItem.Modificado,"pt-BR"),TimeValue(Now(),"pt-BR"),TimeUnit.Minutes)/60))*60
+                Visible: =If(DateDiff(ThisItem.Criado,Now()) <1,true,false)
+                Width: =138
+                X: =1228
+                Y: =7
+                ZIndex: =1
+
+            Icon3 As icon.Clock:
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                Height: =30
+                Icon: =Icon.Clock
+                OnSelect: =Select(Parent)
+                Visible: =If(DateDiff(ThisItem.Criado,Now()) <1,true,false)
+                Width: =34
+                X: =1236
+                Y: =10
+                ZIndex: =2
+
+    Icon2_1 As icon.Home:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =104
+        Icon: =Icon.Home
+        OnSelect: =Navigate(TelaMenu,ScreenTransition.None)
+        Width: =104
+        X: =21
+        Y: =19
+        ZIndex: =4
+
+    TextInput1 As text:
+        BorderColor: =RGBA(0, 13, 75, 1)
+        Default: =
+        Height: =50
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Width: =1366
+        Y: =166
+        ZIndex: =6
+
+    Dropdown10 As dropdown:
+        BorderThickness: =1
+        ChevronDisabledBackground: =RGBA(0, 13, 75, 1)
+        ChevronDisabledFill: =RGBA(0, 13, 75, 1)
+        DisabledBorderColor: =RGBA(0, 13, 75, 1)
+        DisabledColor: =RGBA(0, 0, 0, 1)
+        DisabledFill: =RGBA(175, 191, 224, 1)
+        Height: =50
+        HoverFill: =RGBA(175, 191, 224, 1)
+        Items: =["","COLHEITA","CARREGAMENTO"]
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(175, 191, 224, 1)
+        SelectionColor: =RGBA(0, 0, 0, 1)
+        SelectionFill: =RGBA(175, 191, 224, 1)
+        Width: =250
+        X: =376
+        Y: =110
+        ZIndex: =7
+
+    Label3 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Size: =16
+        Text: |-
+            ="ESCOLHA A ÁREA:"
+        Width: =200
+        X: =176
+        Y: =110
+        ZIndex: =8
+
+    Icon1 As icon.BackArrow:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =104
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        Width: =104
+        X: =1239
+        Y: =27
+        ZIndex: =9
+
+    Label11 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Size: =16
+        Text: |-
+            ="STATUS: "
+        X: =724
+        Y: =110
+        ZIndex: =10
+
+    Dropdown11 As dropdown:
+        BorderColor: =RGBA(0, 13, 75, 1)
+        BorderThickness: =1
+        ChevronDisabledBackground: =RGBA(0, 13, 75, 1)
+        ChevronDisabledFill: =RGBA(0, 13, 75, 1)
+        DisabledBorderColor: =RGBA(0, 13, 75, 1)
+        DisabledColor: =RGBA(0, 0, 0, 1)
+        DisabledFill: =RGBA(175, 191, 224, 1)
+        Height: =50
+        HoverFill: =RGBA(175, 191, 224, 1)
+        Items: =["Em Andamento", "Encerrado"]
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(175, 191, 224, 1)
+        SelectionColor: =RGBA(0, 0, 0, 1)
+        SelectionFill: =RGBA(175, 191, 224, 1)
+        Width: =250
+        X: =840
+        Y: =110
+        ZIndex: =11
+
+    Icon4 As icon.Search:
+        Color: =RGBA(128, 128, 128, 1)
+        Height: =50
+        Icon: =Icon.Search
+        Width: =52
+        X: =1314
+        Y: =166
+        ZIndex: =12
+
+    Image4 As image:
+        Height: =62
+        Image: =LOGO_TORRE_BRANCO
+        Width: =180
+        X: =592
+        Y: =19
+        ZIndex: =13
+
